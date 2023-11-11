@@ -6,10 +6,10 @@ import { browser } from "$app/environment";
 
 async function wwsfetch(
   path: string,
-  url?: string,
+  baseUrl?: string,
   params?: Record<string, string>
 ) {
-  const endPoint = new URL(path, url ? url : PUBLIC_AUTH_SERVER_ORIGIN);
+  const endPoint = new URL(path, baseUrl ? baseUrl : PUBLIC_AUTH_SERVER_ORIGIN);
   if (params) {
     Object.entries(params).forEach((entry) => {
       endPoint.searchParams.append(entry[0], entry[1]);
