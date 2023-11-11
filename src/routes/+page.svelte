@@ -3,7 +3,7 @@
 </script>
 
 <section class="home">
-	<Topbar />home
+	<Topbar />
 </section>
 
 <style>
