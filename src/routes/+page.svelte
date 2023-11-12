@@ -1,10 +1,7 @@
 <script>
-	import Topbar from "./Topbar.svelte";
 </script>
 
-<section class="home">
-	<Topbar />
-</section>
+<section class="home" />
 
 <style>
 </style>
