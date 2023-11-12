@@ -30,6 +30,15 @@ async function wwsfetch(
     }
   }
 
+  const parsedBody = await res.json();
+
+  // response of fetch api is non-enumerable, can not copy properties of response with spread syntax
+  // and res.body is read-only
+  // so, redefine body with parsedBody
+  Object.defineProperty(res, "body", {
+    value: parsedBody,
+    writable: false,
+  });
   return res;
 }
 
