@@ -5,8 +5,11 @@
 :root {
 	--sig: #FFCA36;
 	--font-white: #DDDDDD;
+	--font-black: #161728;
+	--font-gray: #565657;
 	--bg: #161728;
 	--bg-bar: #23263D;
+	--bg-button: #23263D;
 	--bg-input: #23263D;
 }
 
@@ -44,14 +47,16 @@ button {
 	background: none;
 	border: none;
 	border-radius: 10px;
-	padding: 8px 3px;
+	padding: 0.75em 1.5em;
+	background-color: var(--bg-button);
 }
 
 .btn {
 	background: none;
 	border: none;
 	border-radius: 10px;
-	padding: 8px 3px;
+	padding: 0.5em 0.3em;
+	background-color: var(--bg-button);
 }
 
 .btn:hover {

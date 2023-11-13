@@ -8,7 +8,7 @@
     <p>Working With Developer</p>
   </div>
   <ul class="menus">
-    <li class="menu btn">My Application</li>
+    <li class="menu btn"><a href="/app">My Application</a></li>
     <li class="menu btn">Documentation</li>
     <li class="menu assets btn">Assets</li>
   </ul>
