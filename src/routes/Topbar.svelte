@@ -9,15 +9,15 @@
   </div>
   <ul class="menus">
     <li class="menu btn"><a href="/app">My Application</a></li>
-    <li class="menu btn">Documentation</li>
-    <li class="menu assets btn">Assets</li>
+    <li class="menu btn"><a href="">Documentation</a></li>
+    <li class="menu assets btn"><a href="">Assets</a></li>
   </ul>
   <div class="others btn">
     <span class="material-icons"> apps </span>
   </div>
 </section>
 
-<style>
+<style lang="scss">
   section.topbar {
     position: absolute;
     top: 0;
@@ -28,29 +28,32 @@
 
     padding: 0 1.3em;
     display: flex;
-  }
 
-  section.topbar > * {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
+    > * {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
 
-  section.topbar .logo {
-    margin-right: auto;
-  }
+    .logo {
+      margin-right: auto;
+    }
 
-  section.topbar .logo img {
-    width: 2em;
-    margin-right: 10px;
-  }
+    .logo img {
+      width: 2em;
+      margin-right: 10px;
+    }
 
-  section.topbar .menus {
-    gap: 40px;
-    margin-right: 30px;
-  }
+    .menus {
+      gap: 40px;
+      margin-right: 30px;
 
-  section.topbar .menus .menu {
-    text-align: center;
+      .menu {
+        text-align: center;
+        a {
+          font-size: 1.2em;
+        }
+      }
+    }
   }
 </style>
