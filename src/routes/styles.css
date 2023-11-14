@@ -9,6 +9,7 @@
 	--font-gray: #565657;
 	--bg: #161728;
 	--bg-bar: #23263D;
+	--bg-modal: #24273d;
 	--bg-button: #23263D;
 	--bg-input: #23263D;
 }
@@ -53,6 +54,12 @@ button {
 	border-radius: 10px;
 	padding: 0.75em 1.5em;
 	background-color: var(--bg-button);
+}
+
+.sig-btn {
+	background-color: var(--sig);
+	font-weight: 800;
+	color: var(--bg);
 }
 
 .btn {
