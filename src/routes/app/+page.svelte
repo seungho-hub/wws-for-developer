@@ -1,7 +1,10 @@
 <script>
   import { onMount } from "svelte";
   import wwsfetch from "../../utils/wwsfetch";
+  import BackDrop from "$lib/components/BackDrop.svelte";
+  import AppCreationForm from "./AppCreationForm.svelte";
 
+  let showModal = false;
   let apps = [];
 
   onMount(() => {
@@ -12,12 +15,31 @@
 </script>
 
 <section id="my-apps">
+  {#if showModal}
+    <BackDrop bind:showModal>
+      <div class="modal" on:click|stopPropagation>
+        <div class="modal-header">create wws application</div>
+        <div class="modal-body">
+          <AppCreationForm />
+        </div>
+        <div class="modal-footer">
+          <button class="cancle" on:click={() => (showModal = false)}>
+            cancle
+          </button>
+          <button class="create sig-btn"> create </button>
+        </div>
+      </div>
+    </BackDrop>
+  {/if}
+
   <div class="header">
     <div class="title">
       <p>WWS Apps</p>
     </div>
     <div class="new-app">
-      <button class="new-app-btn">New Application</button>
+      <button class="new-app-btn sig-btn" on:click={() => (showModal = true)}
+        >New Application</button
+      >
     </div>
   </div>
   <div class="app-card-container">
@@ -44,6 +66,35 @@
 </section>
 
 <style lang="scss">
+  .modal {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    padding: 25px;
+    transform: translate(-50%, -50%);
+    width: 50em;
+    background-color: var(--bg-modal);
+    display: flex;
+    flex-direction: column;
+    .modal-header {
+      font-size: 1.5em;
+      margin-bottom: 2em;
+    }
+    .modal-body {
+    }
+    .modal-footer {
+      margin-top: 3em;
+      display: flex;
+      justify-content: flex-end;
+      button.cancle {
+        color: var(--sig);
+      }
+      button.create {
+        background-color: var(--sig);
+        color: var(--font-black);
+      }
+    }
+  }
   #my-apps {
     height: 100%;
     display: flex;
@@ -57,11 +108,11 @@
       display: flex;
       flex-direction: row;
       border-bottom: 2px solid var(--bg-bar);
-      padding-bottom: 1em;
+      padding-bottom: 10px;
       .title {
         flex: 1;
         p {
-          font-size: 2em;
+          font-size: 1.5em;
         }
       }
       .new-app {
@@ -69,23 +120,18 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        button {
-          font-weight: 800;
-          background-color: var(--sig);
-          color: var(--font-black);
-        }
       }
     }
     .app-card-container {
       .app-card {
         border-bottom: 3px solid var(--bg-bar);
-        padding: 1em 2em;
+        padding: 10px 20px;
         display: flex;
         flex-direction: row;
-        gap: 2em;
+        gap: 20px;
         .logo {
-          width: 5em;
-          height: 5em;
+          width: 50px;
+          height: 50px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -103,7 +149,7 @@
           align-items: center;
           justify-content: center;
           p {
-            font-size: 1.5em;
+            font-size: 1.2em;
           }
         }
         .edit {
@@ -117,7 +163,7 @@
         p {
           color: var(--font-gray);
           text-align: center;
-          font-size: 1.5em;
+          font-size: 1.2em;
         }
       }
     }
