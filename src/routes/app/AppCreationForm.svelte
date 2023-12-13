@@ -76,6 +76,7 @@
           align-items: center;
           justify-content: center;
           margin-right: 2em;
+          overflow: hidden;
           img {
             width: 100%;
           }
