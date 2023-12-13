@@ -47,10 +47,10 @@
       {#each apps as app}
         <div class="app-card">
           <div class="logo">
-            <img src={app.logo} alt="" />
+            <img src={app.logo_uri} alt="" />
           </div>
           <div class="name">
-            <p>{app.name}</p>
+            <p>{app.client_name}</p>
           </div>
           <div class="edit">
             <button>edit</button>
