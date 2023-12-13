@@ -80,8 +80,6 @@
       font-size: 1.5em;
       margin-bottom: 2em;
     }
-    .modal-body {
-    }
     .modal-footer {
       margin-top: 3em;
       display: flex;
@@ -135,13 +133,13 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          border-radius: 2.5em;
+          border-radius: 25px;
           overflow: hidden;
           background-color: #161728;
           margin-right: 2em;
           img {
-            width: 5em;
-            height: 5em;
+            width: 50px;
+            height: 50px;
           }
         }
         .name {
