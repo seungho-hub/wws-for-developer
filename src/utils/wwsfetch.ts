@@ -4,14 +4,19 @@ import {
 } from "$env/static/public";
 import { browser } from "$app/environment";
 
-async function wwsfetch(
-  path: string,
-  baseUrl?: string,
-  params?: Record<string, string>
-) {
-  const endPoint = new URL(path, baseUrl ? baseUrl : PUBLIC_AUTH_SERVER_ORIGIN);
-  if (params) {
-    Object.entries(params).forEach((entry) => {
+interface Option extends RequestInit {
+  baseUrl?: string;
+  params?: Record<string, string>;
+}
+
+async function wwsfetch(path: string, option?: Option) {
+  const endPoint = new URL(
+    path,
+    option?.baseUrl ? option?.baseUrl : PUBLIC_AUTH_SERVER_ORIGIN
+  );
+
+  if (option?.params) {
+    Object.entries(option.params).forEach((entry) => {
       endPoint.searchParams.append(entry[0], entry[1]);
     });
   }
@@ -20,6 +25,7 @@ async function wwsfetch(
     headers: {
       Authorization: `Bearer ${window.localStorage.getItem("token")}`,
     },
+    ...option,
   });
 
   if (res.status === 401) {
