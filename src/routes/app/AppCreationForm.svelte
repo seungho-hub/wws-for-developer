@@ -1,56 +1,58 @@
 <script>
-  let inputAppIcon;
-  let iconPreview;
-  let showIcon = false;
+  let inputAppLogo;
+  let logoPreview;
+  let showLogo = false;
 
-  function onAppIconChange() {
-    const file = inputAppIcon.files[0];
+  function onAppLogoChange() {
+    const file = inputAppLogo.files[0];
 
     if (file) {
-      showIcon = true;
+      showLogo = true;
 
       const reader = new FileReader();
       reader.addEventListener("load", function () {
-        iconPreview.setAttribute("src", reader.result);
+        logoPreview.setAttribute("src", reader.result);
       });
       reader.readAsDataURL(file);
 
       return;
     }
 
-    showIcon = false;
+    showLogo = false;
   }
 </script>
 
-<div class="app-creation-form">
-  <form action="">
-    <div class="app-creation-field app-icon">
-      <p class="label">app icon</p>
-      <div class="icon-preview">
-        {#if showIcon}
-          <img bind:this={iconPreview} src="" alt="" />
+<div class="app-creation-form-container">
+  <form id="app-creation-form">
+    <div class="app-creation-field app-logo">
+      <p class="label">app logo</p>
+      <div class="logo-preview">
+        {#if showLogo}
+          <img bind:this={logoPreview} src="" alt="" />
         {:else}
           <span>no image</span>
         {/if}
       </div>
-      <button on:click={inputAppIcon.click()}>select image</button>
+      <button on:click={inputAppLogo.click()} type="button">select image</button
+      >
       <input
         type="file"
-        name="icon"
+        name="logo"
         hidden
-        bind:this={inputAppIcon}
-        on:change={onAppIconChange}
+        class="logo"
+        bind:this={inputAppLogo}
+        on:change={onAppLogoChange}
       />
     </div>
     <div class="app-creation-field app-name">
       <p class="label">app name</p>
-      <input type="text" name="name" />
+      <input type="text" name="name" class="name" />
     </div>
   </form>
 </div>
 
 <style lang="scss">
-  .app-creation-form {
+  .app-creation-form-container {
     form {
       display: flex;
       flex-direction: column;
@@ -65,9 +67,9 @@
         }
       }
 
-      .app-creation-field.app-icon {
+      .app-creation-field.app-logo {
         border-top: 0.5px solid var(--font-gray);
-        .icon-preview {
+        .logo-preview {
           background-color: var(--bg);
           border-radius: 40px;
           width: 80px;

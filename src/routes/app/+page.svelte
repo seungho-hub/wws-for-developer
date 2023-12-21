@@ -12,6 +12,22 @@
       apps = res.body;
     });
   });
+
+  function submitAppCreationForm() {
+    const form = document.querySelector("#app-creation-form");
+
+    const formData = new FormData();
+    formData.append("name", form.querySelector(".name").value);
+    formData.append("logo", form.querySelector(".logo").files[0]);
+
+    wwsfetch("/app", { method: "POST", body: formData })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 </script>
 
 <section id="my-apps">
@@ -26,7 +42,13 @@
           <button class="cancle" on:click={() => (showModal = false)}>
             cancle
           </button>
-          <button class="create sig-btn"> create </button>
+          <button
+            class="create sig-btn"
+            type="submit"
+            on:click={submitAppCreationForm}
+          >
+            create
+          </button>
         </div>
       </div>
     </BackDrop>
