@@ -96,7 +96,7 @@
     padding: 25px;
     transform: translate(-50%, -50%);
     width: 50em;
-    background-color: var(--bg-modal);
+    background-color: var(--bg);
     display: flex;
     flex-direction: column;
     .modal-header {
@@ -109,6 +109,7 @@
       justify-content: flex-end;
       button.cancle {
         color: var(--sig);
+        background: none;
       }
       button.create {
         background-color: var(--sig);
