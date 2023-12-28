@@ -48,6 +48,10 @@
       <p class="label">app name</p>
       <input type="text" name="name" class="name" />
     </div>
+    <div class="app-creation-field app-uri">
+      <p class="label">Homepage URL</p>
+      <input type="uri" name="uri" class="uri" />
+    </div>
   </form>
 </div>
 
@@ -57,20 +61,23 @@
       display: flex;
       flex-direction: column;
       .app-creation-field {
-        border-bottom: 0.5px solid var(--font-gray);
+        border-bottom: 0.5px solid var(--border);
         padding: 1em 0;
         display: flex;
         align-items: center;
         .label {
-          width: 10em;
+          width: 15em;
           padding: 0.5em 2em;
+        }
+        input {
+          background-color: var(--bg-bar);
         }
       }
 
       .app-creation-field.app-logo {
-        border-top: 0.5px solid var(--font-gray);
+        border-top: 0.5px solid var(--border);
         .logo-preview {
-          background-color: var(--bg);
+          background-color: var(--bg-bar);
           border-radius: 40px;
           width: 80px;
           height: 80px;
