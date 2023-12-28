@@ -20,12 +20,17 @@
 
     showLogo = false;
   }
+
+  function removeLogo() {
+    inputAppLogo.value = "";
+    showLogo = false;
+  }
 </script>
 
 <div class="app-creation-form-container">
   <form id="app-creation-form">
     <div class="app-creation-field app-logo">
-      <p class="label">app logo</p>
+      <p class="label">logo</p>
       <div class="logo-preview">
         {#if showLogo}
           <img bind:this={logoPreview} src="" alt="" />
@@ -33,8 +38,16 @@
           <span>no image</span>
         {/if}
       </div>
-      <button on:click={inputAppLogo.click()} type="button">select image</button
-      >
+      <div class="logo-btns">
+        <button
+          class="btn logo-select"
+          on:click={inputAppLogo.click()}
+          type="button">select image</button
+        >
+        <button class="btn logo-delete" on:click={removeLogo} type="button"
+          >remove logo</button
+        >
+      </div>
       <input
         type="file"
         name="logo"
@@ -45,7 +58,7 @@
       />
     </div>
     <div class="app-creation-field app-name">
-      <p class="label">app name</p>
+      <p class="label">name</p>
       <input type="text" name="name" class="name" />
     </div>
     <div class="app-creation-field app-uri">
@@ -90,10 +103,22 @@
             width: 100%;
           }
         }
-        button {
-          padding: 5px 10px;
-          background-color: var(--font-white);
-          color: var(--font-black);
+        .logo-btns {
+          display: flex;
+          flex-direction: column;
+          gap: 1em;
+
+          .btn {
+            padding: 5px 10px;
+          }
+          .logo-select {
+            background-color: var(--font-white);
+            color: var(--font-black);
+          }
+          .logo-delete {
+            color: var(--font-red);
+            background: none;
+          }
         }
       }
     }
