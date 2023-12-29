@@ -70,7 +70,7 @@
       {#each apps as app}
         <div class="app-card">
           <div class="logo">
-            <img src={app.logo_uri} alt="" />
+            <img src={app.logo_uri} alt="" crossorigin />
           </div>
           <div class="name">
             <p>{app.client_name}</p>
