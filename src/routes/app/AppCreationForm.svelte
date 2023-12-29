@@ -91,9 +91,9 @@
         border-top: 0.5px solid var(--border);
         .logo-preview {
           background-color: var(--bg-bar);
-          border-radius: 40px;
-          width: 80px;
-          height: 80px;
+          border-radius: 50px;
+          width: 100px;
+          height: 100px;
           display: flex;
           align-items: center;
           justify-content: center;
