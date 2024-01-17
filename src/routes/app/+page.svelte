@@ -80,7 +80,7 @@
             <p>{app.client_name}</p>
           </div>
           <div class="edit">
-            <button>edit</button>
+            <a class="btn" href="/app/{app.client_id}">edit</a>
           </div>
         </div>
       {/each}
