@@ -18,7 +18,11 @@
 
     const formData = new FormData();
     formData.append("name", form.querySelector(".name").value);
-    formData.append("logo", form.querySelector(".logo").files[0]);
+
+    const logoFile = form.querySelector(".logo").files[0];
+    if (logoFile) {
+      formData.append("logo", logoFile);
+    }
     formData.append("uri", form.querySelector(".uri").value);
 
     wwsfetch("/app", { method: "POST", body: formData })
