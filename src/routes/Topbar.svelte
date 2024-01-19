@@ -12,7 +12,7 @@
     <li class="menu btn"><a href="">Documentation</a></li>
     <li class="menu assets btn"><a href="">Assets</a></li>
   </ul>
-  <div class="others btn">
+  <div class="others">
     <span class="material-icons"> apps </span>
   </div>
 </section>
