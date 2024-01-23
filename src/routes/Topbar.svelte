@@ -45,7 +45,6 @@
     }
 
     .menus {
-      gap: 40px;
       margin-right: 30px;
 
       .menu {

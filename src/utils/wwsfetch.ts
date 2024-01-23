@@ -45,6 +45,7 @@ async function wwsfetch(path: string, option?: Option) {
     value: parsedBody,
     writable: false,
   });
+
   return res;
 }
 
