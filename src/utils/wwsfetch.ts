@@ -1,7 +1,3 @@
-import {
-  PUBLIC_AUTH_SERVER_ORIGIN,
-  PUBLIC_FOR_DEVELOPER_ORIGIN,
-} from "$env/static/public";
 import { browser } from "$app/environment";
 
 interface Option extends RequestInit {
@@ -12,7 +8,7 @@ interface Option extends RequestInit {
 async function wwsfetch(path: string, option?: Option) {
   const endPoint = new URL(
     path,
-    option?.baseUrl ? option?.baseUrl : PUBLIC_AUTH_SERVER_ORIGIN
+    option?.baseUrl ? option?.baseUrl : import.meta.env.VITE_AUTH_SERVER_ORIGIN
   );
 
   if (option?.params) {
@@ -31,8 +27,8 @@ async function wwsfetch(path: string, option?: Option) {
   if (res.status === 401) {
     if (browser) {
       window.location.href =
-        PUBLIC_AUTH_SERVER_ORIGIN +
-        `/auth/login?continue=${PUBLIC_FOR_DEVELOPER_ORIGIN}/login`;
+        import.meta.env.VITE_AUTH_SERVER_ORIGIN +
+        `/auth/login?continue=${import.meta.env.VITE_DEV_SERVER_ORIGIN}/login`;
     }
   }
 
