@@ -18,17 +18,15 @@ async function wwsfetch(path: string, option?: Option) {
   }
 
   const res = await fetch(endPoint, {
-    headers: {
-      Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-    },
     ...option,
+    credentials: "include",
   });
 
   if (res.status === 401) {
     if (browser) {
       window.location.href =
         import.meta.env.VITE_AUTH_SERVER_ORIGIN +
-        `/auth/login?continue=${import.meta.env.VITE_DEV_SERVER_ORIGIN}/login`;
+        `/auth/login?continue=${import.meta.env.VITE_DEV_SERVER_ORIGIN}/`;
     }
   }
 
