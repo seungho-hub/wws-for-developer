@@ -74,7 +74,7 @@
       {#each apps as app}
         <div class="app-card">
           <div class="logo">
-            <img src={app.logo_uri} alt="" crossorigin />
+            <img src={app.logo_uri} alt="" />
           </div>
           <div class="name">
             <p>{app.client_name}</p>
@@ -123,6 +123,7 @@
   }
   #my-apps {
     height: 100%;
+    width: 1000px;
     display: flex;
     flex-direction: column;
     align-items: center;
