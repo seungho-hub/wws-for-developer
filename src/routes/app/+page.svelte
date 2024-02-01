@@ -186,7 +186,7 @@
       }
       .empty-prompt {
         p {
-          color: var(--font-gray);
+          color: var(--font-drak-gray);
           text-align: center;
           font-size: 1.2em;
         }
