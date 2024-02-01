@@ -2,7 +2,7 @@
   import logo from "$lib/images/logo.png";
 </script>
 
-<section class="topbar">
+<section id="topbar">
   <div class="logo">
     <img src={logo} alt="stuart" />
     <p>Working With Developer</p>
@@ -18,7 +18,7 @@
 </section>
 
 <style lang="scss">
-  section.topbar {
+  section#topbar {
     position: absolute;
     top: 0;
     left: 0;
