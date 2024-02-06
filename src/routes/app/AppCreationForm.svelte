@@ -1,7 +1,16 @@
 <script>
+  export let app;
+
   let inputAppLogo;
   let logoPreview;
+
   let showLogo = false;
+
+  $: {
+    if (app) {
+      showLogo = true;
+    }
+  }
 
   function onAppLogoChange() {
     const file = inputAppLogo.files[0];
@@ -33,7 +42,7 @@
       <p class="label">logo</p>
       <div class="logo-preview">
         {#if showLogo}
-          <img bind:this={logoPreview} src="" alt="" />
+          <img bind:this={logoPreview} src={app ? app.logo_uri : ""} alt="" />
         {:else}
           <span>no image</span>
         {/if}
@@ -81,9 +90,6 @@
         .label {
           width: 15em;
           padding: 0.5em 2em;
-        }
-        input {
-          background-color: var(--bg-bar);
         }
       }
 
