@@ -25,13 +25,7 @@
     }
     formData.append("uri", form.querySelector(".uri").value);
 
-    wwsfetch("/app", { method: "POST", body: formData })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    wwsfetch("/app", { method: "POST", body: formData });
   }
 </script>
 
@@ -44,7 +38,10 @@
           <AppCreationForm />
         </div>
         <div class="modal-footer">
-          <button class="cancle" on:click={() => (showModal = false)}>
+          <button
+            class="btn-text text-sig"
+            on:click={() => (showModal = false)}
+          >
             cancle
           </button>
           <button
@@ -64,7 +61,7 @@
       <p>WWS Apps</p>
     </div>
     <div class="new-app">
-      <button class="new-app-btn sig-btn" on:click={() => (showModal = true)}
+      <button class="btn-sig" on:click={() => (showModal = true)}
         >New Application</button
       >
     </div>
@@ -111,10 +108,6 @@
       margin-top: 3em;
       display: flex;
       justify-content: flex-end;
-      button.cancle {
-        color: var(--sig);
-        background: none;
-      }
       button.create {
         background-color: var(--sig);
         color: var(--font-black);
