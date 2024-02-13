@@ -1,48 +1,63 @@
-<script>
-  import { onMount } from "svelte";
+<script lang="ts">
+  import type { App } from "../../../../types/app";
+  import type { Menu } from "../../../../types/menu.d";
+
+  import Edit from "./Edit.svelte";
+  import Danger from "./Danger.svelte";
+  import NavBox from "$lib/components/NavBox.svelte";
   import wwsfetch from "../../../utils/wwsfetch";
+  import { page } from "$app/stores";
+  import { onMount } from "svelte";
 
-  export let data;
+  let app: App;
 
-  let app;
+  const menus: Array<Required<Menu>> = [
+    {
+      id: 1,
+      name: "edit",
+    },
+    {
+      id: 2,
+      name: "danger",
+    },
+  ];
+
+  let selectedMenu = 1;
+
+  function changeMenu(e: CustomEventInit) {
+    selectedMenu = e.detail.menuId;
+  }
 
   onMount(() => {
-    wwsfetch(`/app/${data.appId}`)
-      .then((res) => {
-        app = res;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    wwsfetch(`/app/${$page.params.appId}`).then((res) => {
+      app = res.body as unknown as App;
+    });
   });
 </script>
 
 <section id="my-app">
-  <div class="header">
-    <h2>About</h2>
+  <div class="left">
+    <NavBox {menus} {selectedMenu} on:changeMenu={changeMenu}></NavBox>
   </div>
-  <div class="appInfo">
-    <p class="app ID">App ID : {app.client_id}</p>
-    <p></p>
+  <div class="right">
+    {#if selectedMenu == 1}
+      <Edit {app}></Edit>
+    {:else if selectedMenu == 2}
+      <Danger></Danger>
+    {/if}
   </div>
-  <div class="footer">footer</div>
 </section>
 
 <style lang="scss">
-  #my-app {
-    height: 100%;
+  section#my-app {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1em;
-    > * {
-      width: 60%;
+    flex-direction: row;
+    gap: 30px;
+    .left {
+      width: 200px;
     }
-    .header {
-      display: flex;
-      flex-direction: row;
-      border-bottom: 2px solid var(--bg-bar);
-      padding-bottom: 10px;
+    .right {
+      width: 600px;
     }
   }
 </style>
