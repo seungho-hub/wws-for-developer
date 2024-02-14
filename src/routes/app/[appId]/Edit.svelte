@@ -26,7 +26,7 @@
           </div>
           <div class="middle">
             <span class="value-hided"> {app?.client_secret} </span>
-            <span class="info">
+            <span class="info text-blur">
               generated on Jul 12, 2023 by seungho-hub Last used within the last
               6 months
             </span>
@@ -104,9 +104,6 @@
             flex-grow: 4;
             .value-hided {
               font-size: 0.8em;
-            }
-            .info {
-              color: var(--font-light-gray);
             }
           }
           .right {

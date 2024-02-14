@@ -146,6 +146,22 @@ h5 {
 	color: var(--sig);
 }
 
+.text-blur {
+	color: var(--font-light-gray);
+}
+
 .bg-sig {
 	background-color: var(--sig);
+}
+
+.border-thin {
+	border-width: 0.5px;
+}
+
+.border-average {
+	border-width: 0.8px;
+}
+
+.border-thick {
+	border-width: 1px;
 }
