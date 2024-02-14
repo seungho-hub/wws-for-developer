@@ -1,6 +1,6 @@
 <script>
   import AppCreationForm from "../AppCreationForm.svelte";
-
+  import CopyBtn from "$lib/components/CopyBtn.svelte";
   export let app;
 </script>
 
@@ -25,11 +25,14 @@
             <span class="icon material-symbols-outlined"> vpn_key </span>
           </div>
           <div class="middle">
-            <span class="value-hided"> {app?.client_secret} </span>
-            <span class="info text-blur">
+            <div class="value">
+              <span class="string"> {app?.client_secret} </span>
+              <CopyBtn size={"13px"} text={app?.client_secret}></CopyBtn>
+            </div>
+            <p class="info text-blur">
               generated on Jul 12, 2023 by seungho-hub Last used within the last
               6 months
-            </span>
+            </p>
           </div>
           <div class="right">
             <button class="delete text-warn">delete</button>
@@ -99,11 +102,15 @@
             justify-content: center;
           }
           .middle {
-            display: flex;
-            flex-direction: column;
             flex-grow: 4;
-            .value-hided {
-              font-size: 0.8em;
+            .value {
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              height: 20px;
+              .string {
+                font-size: 10px;
+              }
             }
           }
           .right {
