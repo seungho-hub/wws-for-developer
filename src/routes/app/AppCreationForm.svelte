@@ -68,11 +68,21 @@
     </div>
     <div class="app-creation-field app-name">
       <p class="label">name</p>
-      <input type="text" name="name" class="name" />
+      <input
+        type="text"
+        name="name"
+        class="name"
+        value={app ? app.client_name : ""}
+      />
     </div>
     <div class="app-creation-field app-uri">
       <p class="label">Homepage URL</p>
-      <input type="uri" name="uri" class="uri" />
+      <input
+        type="uri"
+        name="uri"
+        class="uri"
+        value={app ? app.client_uri : ""}
+      />
     </div>
   </form>
 </div>
