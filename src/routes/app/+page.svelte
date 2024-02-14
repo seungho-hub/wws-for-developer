@@ -79,8 +79,8 @@
           <div class="name">
             <p>{app.client_name}</p>
           </div>
-          <div class="edit">
-            <a class="btn" href="/app/{app.client_id}">edit</a>
+          <div class="detail">
+            <a class="btn" href="/app/{app.client_id}">detail</a>
           </div>
         </div>
       {/each}
@@ -174,7 +174,7 @@
             font-size: 1.2em;
           }
         }
-        .edit {
+        .detail {
           flex: 1;
           display: flex;
           align-items: center;

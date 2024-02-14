@@ -4,7 +4,7 @@
   export let app;
 </script>
 
-<section class="edit">
+<section class="general">
   <section class="about">
     <div class="header">
       <h4>About</h4>
@@ -62,7 +62,7 @@
 </section>
 
 <style lang="scss">
-  section.edit {
+  section.general {
     display: flex;
     flex-direction: column;
     gap: 1em;

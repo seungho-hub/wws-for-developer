@@ -2,7 +2,7 @@
   import type { App } from "../../../../types/app";
   import type { Menu } from "../../../../types/menu.d";
 
-  import Edit from "./Edit.svelte";
+  import General from "./General.svelte";
   import Danger from "./Danger.svelte";
   import NavBox from "$lib/components/NavBox.svelte";
   import wwsfetch from "../../../utils/wwsfetch";
@@ -14,7 +14,7 @@
   const menus: Array<Required<Menu>> = [
     {
       id: 1,
-      name: "edit",
+      name: "general",
     },
     {
       id: 2,
@@ -41,7 +41,7 @@
   </div>
   <div class="right">
     {#if selectedMenu == 1}
-      <Edit {app}></Edit>
+      <General {app}></General>
     {:else if selectedMenu == 2}
       <Danger></Danger>
     {/if}
