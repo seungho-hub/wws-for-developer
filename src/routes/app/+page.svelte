@@ -25,7 +25,10 @@
     }
     formData.append("uri", form.querySelector(".uri").value);
 
-    wwsfetch("/app", { method: "POST", body: formData });
+    wwsfetch("/app", { method: "POST", body: formData }).then((res) => {
+      showModal = false;
+      apps = [...apps, res.body];
+    });
   }
 </script>
 
