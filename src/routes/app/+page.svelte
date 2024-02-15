@@ -86,7 +86,7 @@
       {/each}
     {:else}
       <div class="empty-prompt">
-        <p>try to create wws application!</p>
+        <p class="text-blur">try to create wws application!</p>
       </div>
     {/if}
   </div>
@@ -183,7 +183,6 @@
       }
       .empty-prompt {
         p {
-          color: var(--font-drak-gray);
           text-align: center;
           font-size: 1.2em;
         }
