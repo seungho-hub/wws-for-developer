@@ -1,10 +1,13 @@
 <script>
   export let app;
 
-  let inputAppLogo;
   let logoPreview;
 
   let showLogo = false;
+
+  export let name;
+  export let uri;
+  export let logo;
 
   $: {
     if (app) {
@@ -13,7 +16,7 @@
   }
 
   function onAppLogoChange() {
-    const file = inputAppLogo.files[0];
+    const file = logo.files[0];
 
     if (file) {
       showLogo = true;
@@ -31,7 +34,7 @@
   }
 
   function removeLogo() {
-    inputAppLogo.value = "";
+    logo.value = "";
     showLogo = false;
   }
 </script>
@@ -48,10 +51,8 @@
         {/if}
       </div>
       <div class="logo-btns">
-        <button
-          class="btn logo-select"
-          on:click={inputAppLogo.click()}
-          type="button">select image</button
+        <button class="btn logo-select" on:click={logo.click()} type="button"
+          >select image</button
         >
         <button class="btn logo-delete" on:click={removeLogo} type="button"
           >remove logo</button
@@ -62,27 +63,17 @@
         name="logo"
         hidden
         class="logo"
-        bind:this={inputAppLogo}
+        bind:this={logo}
         on:change={onAppLogoChange}
       />
     </div>
     <div class="app-creation-field app-name">
       <p class="label">name</p>
-      <input
-        type="text"
-        name="name"
-        class="name"
-        value={app ? app.client_name : ""}
-      />
+      <input type="text" name="name" class="name" bind:value={name} />
     </div>
     <div class="app-creation-field app-uri">
       <p class="label">Homepage URL</p>
-      <input
-        type="uri"
-        name="uri"
-        class="uri"
-        value={app ? app.client_uri : ""}
-      />
+      <input type="uri" name="uri" class="uri" bind:value={uri} />
     </div>
   </form>
 </div>

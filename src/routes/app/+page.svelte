@@ -2,10 +2,12 @@
   import { onMount } from "svelte";
   import wwsfetch from "../../utils/wwsfetch";
   import BackDrop from "$lib/components/BackDrop.svelte";
-  import AppCreationForm from "./AppCreationForm.svelte";
+  import AppCreationForm from "./AppForm.svelte";
 
   let showModal = false;
   let apps = [];
+
+  let name, uri, logo;
 
   onMount(() => {
     wwsfetch("/app").then((res) => {
@@ -14,16 +16,16 @@
   });
 
   function submitAppCreationForm() {
-    const form = document.querySelector("#app-creation-form");
-
     const formData = new FormData();
-    formData.append("name", form.querySelector(".name").value);
 
-    const logoFile = form.querySelector(".logo").files[0];
+    formData.append("name", name);
+    formData.append("uri", uri);
+
+    const logoFile = logo.files[0];
+
     if (logoFile) {
       formData.append("logo", logoFile);
     }
-    formData.append("uri", form.querySelector(".uri").value);
 
     wwsfetch("/app", { method: "POST", body: formData }).then((res) => {
       showModal = false;
@@ -38,7 +40,7 @@
       <div class="modal" on:click|stopPropagation>
         <div class="modal-header">create wws application</div>
         <div class="modal-body">
-          <AppCreationForm />
+          <AppCreationForm bind:name bind:uri bind:logo />
         </div>
         <div class="modal-footer">
           <button
