@@ -1,7 +1,28 @@
 <script>
-  import AppCreationForm from "../AppCreationForm.svelte";
+  import AppCreationForm from "../AppForm.svelte";
   import CopyBtn from "$lib/components/CopyBtn.svelte";
+  import wwsfetch from "../../../utils/wwsfetch";
+
   export let app;
+
+  let name = app.client_name;
+  let uri = app.client_uri;
+  let logo;
+
+  function submitUpdationForm() {
+    const formData = new FormData();
+    formData.append("name", name);
+
+    const logoFile = logo.files[0];
+
+    if (logoFile) {
+      formData.append("logo", logoFile);
+    }
+
+    formData.append("uri", uri);
+
+    wwsfetch(`/app/${app.client_id}`, { method: "PUT", body: formData });
+  }
 </script>
 
 <section class="general">
@@ -45,7 +66,7 @@
     <div class="header">
       <h4>Basic information</h4>
     </div>
-    <AppCreationForm {app}></AppCreationForm>
+    <AppCreationForm bind:name bind:uri bind:logo {app}></AppCreationForm>
   </section>
   <section class="identify-and-authorizing-user">
     <div class="header">
@@ -55,11 +76,11 @@
       <div class="header-sub">
         <h3>Callback URL</h3>
       </div>
-      <input type="url" />
+      <input type="url" name="callback_uri" />
     </div>
   </section>
   <section class="action">
-    <button class="btn-sig">Save changes</button>
+    <button class="btn-sig" on:click={submitUpdationForm}>Save changes</button>
     <button class="btn-text text-sig">Cancel</button>
   </section>
 </section>

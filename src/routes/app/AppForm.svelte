@@ -3,17 +3,12 @@
 
   let logoPreview;
 
-  let showLogo = false;
+  let showLogo = app ? true : false;
 
   export let name;
   export let uri;
+  export let callback_uri;
   export let logo;
-
-  $: {
-    if (app) {
-      showLogo = true;
-    }
-  }
 
   function onAppLogoChange() {
     const file = logo.files[0];

@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { App } from "../../../../types/app";
   import type { Menu } from "../../../../types/menu.d";
 
   import General from "./General.svelte";
@@ -7,9 +6,7 @@
   import NavBox from "$lib/components/NavBox.svelte";
   import wwsfetch from "../../../utils/wwsfetch";
   import { page } from "$app/stores";
-  import { onMount } from "svelte";
-
-  let app: App;
+  import type { App } from "../../../../types/app";
 
   const menus: Array<Required<Menu>> = [
     {
@@ -22,17 +19,20 @@
     },
   ];
 
+  let app: App;
+  let appTemp;
+
   let selectedMenu = 1;
 
   function changeMenu(e: CustomEventInit) {
     selectedMenu = e.detail.menuId;
   }
 
-  onMount(() => {
-    wwsfetch(`/app/${$page.params.appId}`).then((res) => {
-      app = res.body as unknown as App;
-    });
-  });
+  async function fetchApp() {
+    const res = await wwsfetch(`/app/${$page.params.appId}`);
+
+    app = res.body as unknown as App;
+  }
 </script>
 
 <section id="my-app">
@@ -40,11 +40,13 @@
     <NavBox {menus} {selectedMenu} on:changeMenu={changeMenu}></NavBox>
   </div>
   <div class="right">
-    {#if selectedMenu == 1}
-      <General {app}></General>
-    {:else if selectedMenu == 2}
-      <Danger></Danger>
-    {/if}
+    {#await fetchApp() then}
+      {#if selectedMenu == 1}
+        <General {app}></General>
+      {:else if selectedMenu == 2}
+        <Danger></Danger>
+      {/if}
+    {/await}
   </div>
 </section>
 
