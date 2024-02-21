@@ -5,9 +5,8 @@
 
   let showLogo = app ? true : false;
 
-  export let name;
-  export let uri;
-  export let callback_uri;
+  export let client_name;
+  export let client_uri;
   export let logo;
 
   function onAppLogoChange() {
@@ -64,11 +63,16 @@
     </div>
     <div class="app-creation-field app-name">
       <p class="label">name</p>
-      <input type="text" name="name" class="name" bind:value={name} />
+      <input
+        type="text"
+        name="client_name"
+        class="name"
+        bind:value={client_name}
+      />
     </div>
     <div class="app-creation-field app-uri">
       <p class="label">Homepage URL</p>
-      <input type="uri" name="uri" class="uri" bind:value={uri} />
+      <input type="uri" name="client_uri" class="uri" bind:value={client_uri} />
     </div>
   </form>
 </div>

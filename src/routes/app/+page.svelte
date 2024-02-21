@@ -7,7 +7,9 @@
   let showModal = false;
   let apps = [];
 
-  let name, uri, logo;
+  let client_name;
+  let client_uri;
+  let logo;
 
   onMount(() => {
     wwsfetch("/app").then((res) => {
@@ -18,8 +20,8 @@
   function submitAppCreationForm() {
     const formData = new FormData();
 
-    formData.append("name", name);
-    formData.append("uri", uri);
+    formData.append("client_name", client_name);
+    formData.append("client_uri", client_uri);
 
     const logoFile = logo.files[0];
 
@@ -40,7 +42,7 @@
       <div class="modal" on:click|stopPropagation>
         <div class="modal-header">create wws application</div>
         <div class="modal-body">
-          <AppCreationForm bind:name bind:uri bind:logo />
+          <AppCreationForm bind:client_name bind:client_uri bind:logo />
         </div>
         <div class="modal-footer">
           <button

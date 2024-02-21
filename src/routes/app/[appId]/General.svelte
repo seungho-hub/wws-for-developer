@@ -5,21 +5,20 @@
 
   export let app;
 
-  let name = app.client_name;
-  let uri = app.client_uri;
+  let client_name = app.client_name;
+  let client_uri = app.client_uri;
   let logo;
 
   function submitUpdationForm() {
     const formData = new FormData();
-    formData.append("name", name);
+    formData.append("client_name", client_name);
+    formData.append("client_uri", client_uri);
 
     const logoFile = logo.files[0];
 
     if (logoFile) {
       formData.append("logo", logoFile);
     }
-
-    formData.append("uri", uri);
 
     wwsfetch(`/app/${app.client_id}`, { method: "PUT", body: formData });
   }
@@ -66,7 +65,8 @@
     <div class="header">
       <h4>Basic information</h4>
     </div>
-    <AppCreationForm bind:name bind:uri bind:logo {app}></AppCreationForm>
+    <AppCreationForm bind:client_name bind:client_uri bind:logo {app}
+    ></AppCreationForm>
   </section>
   <section class="identify-and-authorizing-user">
     <div class="header">
@@ -76,7 +76,7 @@
       <div class="header-sub">
         <h3>Callback URL</h3>
       </div>
-      <input type="url" name="callback_uri" />
+      <input type="url" name="redirect_uri" />
     </div>
   </section>
   <section class="action">
