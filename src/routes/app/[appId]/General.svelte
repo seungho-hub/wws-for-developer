@@ -7,12 +7,16 @@
 
   let client_name = app.client_name;
   let client_uri = app.client_uri;
+  let redirect_uri = "";
   let logo;
+
+  let redirect_uris = [];
 
   function submitUpdationForm() {
     const formData = new FormData();
     formData.append("client_name", client_name);
     formData.append("client_uri", client_uri);
+    formData.append("redirect_uri", redirect_uris);
 
     const logoFile = logo.files[0];
 
@@ -21,6 +25,17 @@
     }
 
     wwsfetch(`/app/${app.client_id}`, { method: "PUT", body: formData });
+  }
+
+  function appendRedirectUri() {
+    redirect_uris = [...redirect_uris, redirect_uri];
+  }
+
+  function removeRedirectUri(index) {
+    redirect_uris = [
+      ...redirect_uris.slice(0, index),
+      ...redirect_uris.slice(index + 1, redirect_uris.length),
+    ];
   }
 </script>
 
@@ -73,10 +88,29 @@
       <h4>Identifying and authorizing user</h4>
     </div>
     <div class="body">
-      <div class="header-sub">
-        <h3>Callback URL</h3>
-      </div>
-      <input type="url" name="redirect_uri" />
+      <section class="redirect-uri">
+        <div class="header-sub">
+          <h3>Callback URL</h3>
+        </div>
+        <div class="append">
+          <input type="url" name="redirect_uri" bind:value={redirect_uri} />
+          <button on:click={appendRedirectUri}>add</button>
+        </div>
+        <ul class="list">
+          {#each redirect_uris as redirect_uri, index}
+            <li class="uri middle-rounded">
+              <span>{redirect_uri}</span>
+              <button
+                class="text-warn"
+                on:click={() => removeRedirectUri(index)}
+                ><span class="material-symbols-outlined text-warn">
+                  close
+                </span></button
+              >
+            </li>
+          {/each}
+        </ul>
+      </section>
     </div>
   </section>
   <section class="action">
@@ -89,7 +123,7 @@
   section.general {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 20px;
     > section {
       margin-bottom: 40px;
       .header {
@@ -156,8 +190,36 @@
           }
           margin: 15px 0;
         }
-        input {
-          width: 80%;
+        .append {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 20px;
+          input {
+            flex-grow: 4;
+          }
+          button {
+          }
+        }
+        ul.list {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          flex-wrap: wrap;
+          li.uri {
+            background-color: var(--bg-bar);
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+            button {
+              padding: 0;
+              padding-left: 10px;
+              display: flex;
+              align-items: end;
+              span {
+                font-size: 14px;
+              }
+            }
+          }
         }
       }
     }
