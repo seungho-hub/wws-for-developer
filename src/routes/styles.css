@@ -136,7 +136,7 @@ h5 {
 }
 
 .bg-warn {
-	color: var(--font-red);
+	background-color: var(--font-red);
 }
 
 .text-sig {
