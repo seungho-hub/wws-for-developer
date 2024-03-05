@@ -7,16 +7,19 @@
 
   let client_name = app.client_name;
   let client_uri = app.client_uri;
-  let redirect_uri = "";
-  let logo;
+  let redirect_uris = [...app.redirect_uri];
 
-  let redirect_uris = [];
+  let redirect_uri;
+  let logo;
 
   function submitUpdationForm() {
     const formData = new FormData();
     formData.append("client_name", client_name);
     formData.append("client_uri", client_uri);
-    formData.append("redirect_uri", redirect_uris);
+
+    for (let i = 0; i < redirect_uris.length; i++) {
+      formData.append(`redirect_uri${i + 1}`, redirect_uris[i]);
+    }
 
     const logoFile = logo.files[0];
 
@@ -28,7 +31,9 @@
   }
 
   function appendRedirectUri() {
-    redirect_uris = [...redirect_uris, redirect_uri];
+    if (redirect_uris.length < 5) {
+      redirect_uris = [...redirect_uris, redirect_uri];
+    }
   }
 
   function removeRedirectUri(index) {
