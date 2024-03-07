@@ -44,7 +44,7 @@
       {#if selectedMenu == 1}
         <General {app}></General>
       {:else if selectedMenu == 2}
-        <Danger></Danger>
+        <Danger {app}></Danger>
       {/if}
     {/await}
   </div>

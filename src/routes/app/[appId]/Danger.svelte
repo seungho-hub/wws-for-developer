@@ -1,4 +1,11 @@
 <script>
+  import wwsfetch from "../../../utils/wwsfetch";
+
+  export let app;
+
+  function deleteClient() {
+    wwsfetch(`/app/${app.client_id}`, { method: "DELETE" });
+  }
 </script>
 
 <section class="danger">
@@ -14,7 +21,9 @@
             <p class="text-blur">this action can not be undone.</p>
           </div>
           <div class="right">
-            <button class="text-warn"> Delete WWS App </button>
+            <button class="text-warn" on:click={deleteClient}>
+              Delete WWS App
+            </button>
           </div>
         </li>
       </ul>
