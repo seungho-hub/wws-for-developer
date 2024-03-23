@@ -1,5 +1,6 @@
 <script>
   export let app;
+  const isUpdateForm = app ? true : false;
 
   let logoPreview;
 
@@ -8,6 +9,7 @@
   export let client_name;
   export let client_uri;
   export let logo;
+  export let logo_update_option;
 
   function onAppLogoChange() {
     const file = logo.files[0];
@@ -21,6 +23,8 @@
       });
       reader.readAsDataURL(file);
 
+      if (isUpdateForm) logo_update_option = "update";
+
       return;
     }
 
@@ -29,6 +33,9 @@
 
   function removeLogo() {
     logo.value = "";
+
+    if (isUpdateForm) logo_update_option = "delete";
+
     showLogo = false;
   }
 </script>

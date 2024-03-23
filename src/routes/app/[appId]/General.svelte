@@ -11,11 +11,13 @@
 
   let redirect_uri;
   let logo;
+  let logo_update_option = "no-change";
 
   function submitUpdationForm() {
     const formData = new FormData();
     formData.append("client_name", client_name);
     formData.append("client_uri", client_uri);
+    formData.append("logo_update_option", logo_update_option);
 
     for (let i = 0; i < redirect_uris.length; i++) {
       formData.append(`redirect_uri${i + 1}`, redirect_uris[i]);
@@ -85,7 +87,12 @@
     <div class="header">
       <h4>Basic information</h4>
     </div>
-    <AppCreationForm bind:client_name bind:client_uri bind:logo {app}
+    <AppCreationForm
+      bind:client_name
+      bind:client_uri
+      bind:logo
+      bind:logo_update_option
+      {app}
     ></AppCreationForm>
   </section>
   <section class="identify-and-authorizing-user">
